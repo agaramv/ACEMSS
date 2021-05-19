@@ -1,1 +1,102 @@
-<p>career works!</p>
+<!-- PAGE HEADER -->
+<header id="page-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 m-auto text-center">
+          <h1>Careers</h1>
+          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quas, temporibus?</p>
+        </div>
+      </div>
+    </div>
+  </header>
+<section class="py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body p-4">
+            <h4>Get In Touch</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur, odio!</p>
+              <h4>Address</h4>
+              <p>550 Main st, Boston MA</p>
+              <h4>Email</h4>
+              <p>test@test.com</p>
+              <h4>Phone</h4>
+              <p>(555) 555-5555</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <ng-container >
+          <div class="card mb-4" *ngFor="let j of jobs; let i=index">
+            <div class="card-body">
+              <h5 class="card-title">{{j.title}}</h5>
+              <h6 class="card-subtitle text-muted">{{j.descriptionShort}}</h6>
+              <a class="mt-2" data-bs-toggle="collapse" href="#description{{i}}" role="button">
+                Click for full description
+              </a>
+              <div class="collapse" id="description{{i}}">
+                {{j.descriptionFull}}
+              </div>
+              <br>
+              <button type="button" class="btn btn-outline-primary" (click)="apply(i)"
+              data-bs-toggle="modal" data-bs-target="#applyModal">Apply</button>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div> <!-- End of row -->
+  </div> <!-- End of Container -->
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="applyModal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="applyModalLabel" *ngIf="selectedJob!=null">Apply for {{selectedJob.title}}</h5>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="applyForm">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Applicant First Name</label>
+              <input type="text" class="form-control" placeholder="First name" formControlName="firstName" maxlength="45"
+              [ngClass]="{'is-invalid': (applyForm?.controls['firstName']?.touched && applyForm.controls['firstName'].errors)}"> 
+            </div>
+            <div class="form-group col-md-6">
+              <label>Applicant Last Name</label>
+              <input type="text" class="form-control" placeholder="Last name" formControlName="lastName" maxlength="45">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Applicant Email</label>
+              <input type="email" class="form-control" placeholder="Enter Email" formControlName="email"> 
+            </div>
+            <div class="form-group col-md-6">
+              <label>Applicant Phone</label>
+              <input type="number" class="form-control" placeholder="Enter Phone" formControlName="phone">
+            </div>
+          </div>
+          <input type="file" style="display: none;" #fileUpload (change)=onFileSelected($event)>
+          <div class="file-upload">
+            {{fileName || "no file uploaded yet."}}
+            <button type="button" (click)="fileUpload.click()" style="border-radius: 25px;" class="btn btn-primary upload-btn m-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-paperclip  m-auto" viewBox="0 0 16 16">
+                <path d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-outline-primary" (click)="submit()">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>

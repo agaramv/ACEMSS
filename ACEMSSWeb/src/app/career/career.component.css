@@ -1,0 +1,16 @@
+.info-header {
+    width: 100%;
+    margin: auto;
+    border-bottom: 1px #ddd solid; }
+  
+    #page-header {
+    height: 200px;
+    background: url("../../assets/trees-unsplash.jpg");
+    background-position: 0 -360px;
+    background-attachment: fixed;
+    color: #fff;
+    border-bottom: 1px #eee solid;
+    margin-top: 50px;
+    padding-top: 50px;
+  
+  }
