@@ -8,6 +8,9 @@ import { HomeComponent } from './home/home.component';
 import { AboutComponent } from './about/about.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { CareerComponent } from './career/career.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LoginComponent } from './Auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,11 +19,15 @@ import { CareerComponent } from './career/career.component';
     HomeComponent,
     AboutComponent,
     ContactUsComponent,
-    CareerComponent
+    CareerComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    BrowserModule
   ],
   providers: [],
   bootstrap: [AppComponent]
