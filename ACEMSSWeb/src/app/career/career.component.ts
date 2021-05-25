@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AppService } from '../app.service';
 // import { HttpClient } from "@angular/common/http";
 
 export class Job{
@@ -24,19 +25,21 @@ export class CareerComponent implements OnInit {
   jobs:Job[] = []
   fileName="";
   fileSrc;
+  submitted=false;
 
   applyForm = this.fb.group({
     firstName: ["", [Validators.required, Validators.maxLength(45)]],
     lastName: ["", [Validators.required, Validators.maxLength(45)]],
     email: ["",[Validators.required, Validators.email]],
-    phone: ["", [Validators.required, Validators.min(10)]],
+    phone: ["", [Validators.required, Validators.minLength(10)]],
   })
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder, private appService: AppService) { }
 
   ngOnInit(): void {
     this.addjob("Job 1","this is a job posting","Full Description")
     this.addjob("Job 2","this is a job posting 2", "Full Description")
+
   }
   
   addjob(title:string, short:string, full:string){
@@ -49,12 +52,18 @@ export class CareerComponent implements OnInit {
   }
 
   submit(){
+    this.submitted=true
     console.log(this.applyForm)
+    if(this.applyForm.invalid){
+      console.log("Invalid")
+      this.applyForm.markAllAsTouched();
+      return
+    }
     var formData = this.applyForm.value
     formData.fileSrc = this.fileSrc;
     console.log(formData);
-    
-    //http request
+    this.addApplicant(formData)
+    this.submitted=false;
   }
 
   onFileSelected(event){
@@ -77,5 +86,20 @@ export class CareerComponent implements OnInit {
     // this.http.post("", {}).subscribe((result:any) =>{
     //   console.log(result)
     // })
+  }
+
+  /*********
+   *  APIs
+   */
+  addApplicant(applicant){
+    this.appService.addApplicant(applicant).subscribe(data=>{
+      console.log(data)
+    })
+  }
+
+  getAllMessages(){
+    this.appService.getAllMessages().subscribe(data=>{
+      console.log(data);
+    })
   }
 }

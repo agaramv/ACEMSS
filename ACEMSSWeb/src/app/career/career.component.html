@@ -54,13 +54,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="applyModalLabel" *ngIf="selectedJob!=null">Apply for {{selectedJob.title}}</h5>
+        <h5 class="modal-title" id="applyModalLabel" >Apply for {{selectedJob?.title}}</h5>
         <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form [formGroup]="applyForm">
+          <div class="alert alert-danger" role="alert" *ngIf="applyForm.invalid==true && submitted">
+            Invalid inputs. Please enter valid data. 
+          </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Applicant First Name</label>
@@ -69,21 +72,25 @@
             </div>
             <div class="form-group col-md-6">
               <label>Applicant Last Name</label>
-              <input type="text" class="form-control" placeholder="Last name" formControlName="lastName" maxlength="45">
+              <input type="text" class="form-control" placeholder="Last name" formControlName="lastName" maxlength="45"
+              [ngClass]="{'is-invalid': (applyForm?.controls['lastName']?.touched && applyForm.controls['lastName'].errors)}">
             </div>
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
               <label>Applicant Email</label>
-              <input type="email" class="form-control" placeholder="Enter Email" formControlName="email"> 
+              <input type="email" class="form-control" placeholder="Enter Email" formControlName="email"
+              [ngClass]="{'is-invalid': (applyForm?.controls['email']?.touched && applyForm.controls['email'].errors)}"> 
             </div>
             <div class="form-group col-md-6">
               <label>Applicant Phone</label>
-              <input type="number" class="form-control" placeholder="Enter Phone" formControlName="phone">
+              <input type="number" class="form-control" placeholder="Enter Phone" formControlName="phone"
+              [ngClass]="{'is-invalid': (applyForm?.controls['phone']?.touched && applyForm.controls['phone'].errors)}">
             </div>
           </div>
           <input type="file" style="display: none;" #fileUpload (change)=onFileSelected($event)>
-          <div class="file-upload">
+          <div class="file-upload" 
+            [ngClass]="{'text-danger': !(fileName.length>0)&&applyForm.touched==true}">
             {{fileName || "no file uploaded yet."}}
             <button type="button" (click)="fileUpload.click()" style="border-radius: 25px;" class="btn btn-primary upload-btn m-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-paperclip  m-auto" viewBox="0 0 16 16">
@@ -91,6 +98,7 @@
               </svg>
             </button>
           </div>
+          <!-- <p *ngIf="!(fileName.length>0)&&applyForm.touched==true" class="text-danger">No file has been selected</p> -->
         </form>
       </div>
       <div class="modal-footer">
