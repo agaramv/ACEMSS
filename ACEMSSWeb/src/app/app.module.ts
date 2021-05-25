@@ -11,6 +11,14 @@ import { CareerComponent } from './career/career.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './Auth/login/login.component';
+import { ApplicantViewComponent } from './AuthView/applicant-view/applicant-view.component';
+import { ContactViewComponent } from './AuthView/contact-view/contact-view.component';
+import { CommericalCleaningComponent } from './services/commerical-cleaning/commerical-cleaning.component';
+import { MechanicalMaintenanceComponent } from './services/mechanical-maintenance/mechanical-maintenance.component';
+import { ManagementSupportComponent } from './services/management-support/management-support.component';
+import { PestControlComponent } from './services/pest-control/pest-control.component';
+import { LandscapingComponent } from './services/landscaping/landscaping.component';
+import { SecurityServicesComponent } from './services/security-services/security-services.component';
 
 @NgModule({
   declarations: [
@@ -21,9 +29,18 @@ import { LoginComponent } from './Auth/login/login.component';
     ContactUsComponent,
     CareerComponent,
     LoginComponent,
+    ApplicantViewComponent,
+    ContactViewComponent,
+    CommericalCleaningComponent,
+    MechanicalMaintenanceComponent,
+    ManagementSupportComponent,
+    PestControlComponent,
+    LandscapingComponent,
+    SecurityServicesComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
