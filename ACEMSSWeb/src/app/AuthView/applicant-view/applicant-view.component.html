@@ -1,0 +1,32 @@
+<div class="container" >
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
+            <h3>Applicant List</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-body">
+                    <table class="table table-striped" >
+                      <thead>
+                        <tr>
+                          <th *ngFor="let c of columns">{{c}}</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let a of applicants">
+                          <td>{{a.firstName}}</td>
+                          <td>{{a.lastName}}</td>
+                          <td>{{a.email}}</td>
+                          <td>{{a.phone}}</td>
+                          <td>a</td>
+                        </tr>
+                      </tbody>
+                      </table>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
