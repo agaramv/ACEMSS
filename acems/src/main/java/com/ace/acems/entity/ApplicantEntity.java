@@ -14,6 +14,10 @@ public class ApplicantEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="applicant_id")
 	private int id;
+	@Column(name="date_applied")
+	private String dateApplied;
+	@Column(name="position")
+	private String position;
 	@Column(name="email")
 	private String email;
 	@Column(name="first_name")
@@ -30,9 +34,12 @@ public class ApplicantEntity {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ApplicantEntity(int id, String email, String firstName, String lastName, long phone, String fileSrc) {
+	public ApplicantEntity(int id, String dateApplied, String position, String email, String firstName, String lastName,
+			long phone, String fileSrc) {
 		super();
 		this.id = id;
+		this.dateApplied = dateApplied;
+		this.position = position;
 		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -46,6 +53,22 @@ public class ApplicantEntity {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getDateApplied() {
+		return dateApplied;
+	}
+
+	public void setDateApplied(String dateApplied) {
+		this.dateApplied = dateApplied;
+	}
+
+	public String getPosition() {
+		return position;
+	}
+
+	public void setPosition(String position) {
+		this.position = position;
 	}
 
 	public String getEmail() {
@@ -89,4 +112,5 @@ public class ApplicantEntity {
 	}
 	
 	
+
 }

@@ -14,6 +14,8 @@ public class MessageEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
 	private int id;
+	@Column(name="date_logged")
+	private String date; 
 	@Column(name="first_name")
 	private String firstName; 
 	@Column(name="last_name")
@@ -30,9 +32,13 @@ public class MessageEntity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public MessageEntity(int id, String firstName, String lastName, String email, long phone, String message) {
+	
+
+	public MessageEntity(int id, String date, String firstName, String lastName, String email, long phone,
+			String message) {
 		super();
 		this.id = id;
+		this.date = date;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -40,11 +46,19 @@ public class MessageEntity {
 		this.message = message;
 	}
 
+
+
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getDate() {
+		return date;
+	}
+	public void setDate(String date) {
+		this.date = date;
 	}
 	public String getFirstName() {
 		return firstName;
