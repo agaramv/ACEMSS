@@ -26,12 +26,17 @@ export class ContactUsComponent implements OnInit {
   submit(){
     this.submitted=true;
     console.log(this.contactForm);
+    var date = new Date();
+    console.log(date.toJSON().substring(0,10))
     if(this.contactForm.invalid){
       console.log("Invalid")
       this.contactForm.markAllAsTouched();
       return
     }
-    this.addMessage(this.contactForm.value)
+    var messageWithDate = this.contactForm.value;
+    messageWithDate.date = date.toJSON().substring(0,10);
+    console.log(messageWithDate);
+    this.addMessage(messageWithDate);
     this.submitted=false;
   }
 

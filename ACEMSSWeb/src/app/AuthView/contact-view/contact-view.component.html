@@ -16,10 +16,10 @@
                         </thead>
                         <tbody>
                           <tr *ngFor="let m of messages">
-                            <td>{{m.firstName}}</td>
-                            <td>{{m.lastName}}</td>
-                            <td>{{m.email}}</td>
-                            <td>{{m.phone}}</td>
+                            <td class="col-md-1">{{m.date}}</td>
+                            <td class="col-md-2">{{m.firstName}} {{m.lastName}}</td>
+                            <td class="col-md-1">{{m.email}}</td>
+                            <td class="col-md-1">{{m.phone}}</td>
                             <td>{{m.message}}</td>
                           </tr>
                         </tbody>

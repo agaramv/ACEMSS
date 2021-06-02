@@ -8,7 +8,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class ContactViewComponent implements OnInit {
   messages = []
-  columns = ["First Name", "Last Name","Email", "Phone", "Message"]
+  columns = ["Date","Name","Email", "Phone", "Message"]
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
