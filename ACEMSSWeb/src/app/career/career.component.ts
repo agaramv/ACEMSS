@@ -48,7 +48,7 @@ export class CareerComponent implements OnInit {
 
   apply(i:any){
     this.selectedJob = this.jobs[i];
-    console.log(i);
+    console.log(this.selectedJob);
   }
 
   submit(){
@@ -60,13 +60,17 @@ export class CareerComponent implements OnInit {
       return
     }
     var formData = this.applyForm.value
+    var date = new Date();
     formData.fileSrc = this.fileSrc;
+    formData.dateApplied = date.toJSON().substring(0,10);
+    formData.position = this.selectedJob.title;
     console.log(formData);
     this.addApplicant(formData)
     this.submitted=false;
   }
 
   onFileSelected(event){
+    //make the file type only pdf one resume and cover letter
     const file:File = event.target.files[0];
     
     if(file){

@@ -16,11 +16,12 @@
                       </thead>
                       <tbody>
                         <tr *ngFor="let a of applicants">
-                          <td>{{a.firstName}}</td>
-                          <td>{{a.lastName}}</td>
+                          <td>{{a.dateApplied}}</td>
+                          <td>{{a.position}}</td>
+                          <td>{{a.firstName}} {{a.lastName}}</td>
                           <td>{{a.email}}</td>
                           <td>{{a.phone}}</td>
-                          <td>a</td>
+                          <td><a href="{{a.fileSrc}}" target="_blank">Click to View</a></td>
                         </tr>
                       </tbody>
                       </table>

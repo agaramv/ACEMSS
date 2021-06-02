@@ -8,7 +8,7 @@ import { AppService } from 'src/app/app.service';
 })
 export class ApplicantViewComponent implements OnInit {
   applicants = []
-  columns = ["First Name", "Last Name","Email", "Phone", "File"]
+  columns = ["Date","Position","Name","Email", "Phone", "File"]
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
