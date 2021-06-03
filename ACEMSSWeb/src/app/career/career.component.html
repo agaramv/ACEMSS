@@ -61,8 +61,8 @@
       </div>
       <div class="modal-body">
         <form [formGroup]="applyForm">
-          <div class="alert alert-danger" role="alert" *ngIf="applyForm.invalid==true && submitted">
-            Invalid inputs. Please enter valid data. 
+          <div class="alert alert-danger" role="alert" *ngIf="(applyForm.invalid==true && submitted) || fileTypeError">
+            {{errorTxt}}
           </div>
           <div class="form-row">
             <div class="form-group col-md-6">
@@ -88,9 +88,10 @@
               [ngClass]="{'is-invalid': (applyForm?.controls['phone']?.touched && applyForm.controls['phone'].errors)}">
             </div>
           </div>
+          <p>Please upload one pdf file for your resume/cv.</p>
           <input type="file" style="display: none;" #fileUpload (change)=onFileSelected($event)>
           <div class="file-upload" 
-            [ngClass]="{'text-danger': !(fileName.length>0)&&applyForm.touched==true}">
+            [ngClass]="{'text-danger': !(fileName.length>0)&&(applyForm.touched==true||fileTypeError)}">
             {{fileName || "no file uploaded yet."}}
             <button type="button" (click)="fileUpload.click()" style="border-radius: 25px;" class="btn btn-primary upload-btn m-2">
               <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-paperclip  m-auto" viewBox="0 0 16 16">

@@ -26,6 +26,8 @@ export class CareerComponent implements OnInit {
   fileName="";
   fileSrc;
   submitted=false;
+  fileTypeError=false;
+  errorTxt='Invalid inputs. Please enter valid data.'
 
   applyForm = this.fb.group({
     firstName: ["", [Validators.required, Validators.maxLength(45)]],
@@ -39,7 +41,6 @@ export class CareerComponent implements OnInit {
   ngOnInit(): void {
     this.addjob("Job 1","this is a job posting","Full Description")
     this.addjob("Job 2","this is a job posting 2", "Full Description")
-
   }
   
   addjob(title:string, short:string, full:string){
@@ -57,6 +58,7 @@ export class CareerComponent implements OnInit {
     if(this.applyForm.invalid){
       console.log("Invalid")
       this.applyForm.markAllAsTouched();
+      this.errorTxt="Invalid inputs. Please enter valid data."
       return
     }
     var formData = this.applyForm.value
@@ -72,8 +74,17 @@ export class CareerComponent implements OnInit {
   onFileSelected(event){
     //make the file type only pdf one resume and cover letter
     const file:File = event.target.files[0];
-    
+    console.log(file)
     if(file){
+      if(file.type!="application/pdf"){
+        this.fileTypeError=true;
+        this.errorTxt="Please enter a file with the correct file type."
+        return
+      }
+      //Reset error stuff
+      this.fileTypeError=false;
+      this.errorTxt=''
+      //file processing
       this.fileName=file.name;
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -84,12 +95,6 @@ export class CareerComponent implements OnInit {
     }else{
       console.log("No files")
     }
-  }
-
-  uploadForm(){
-    // this.http.post("", {}).subscribe((result:any) =>{
-    //   console.log(result)
-    // })
   }
 
   /*********
