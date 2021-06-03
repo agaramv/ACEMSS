@@ -14,10 +14,21 @@ export class AppService {
     return this.http.get<any>(this.endpoint+"/message/all");
   }
 
+  getUnreadMessages(){
+    return this.http.get<any>(this.endpoint+"/message/unread");
+  }
+
+  getReadMessages(){
+    return this.http.get<any>(this.endpoint+"/message/read");
+  }
+
   addContactMessage(message){
     return this.http.post<any>(this.endpoint+"/message/add",message)
   }
 
+  updateContactMessage(message){
+    return this.http.post<any>(this.endpoint+"/message/add",message)
+  }
 
   //Career/Applicant Apis
   getAllApplicants(){

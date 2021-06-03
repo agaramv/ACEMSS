@@ -1,8 +1,17 @@
 <div class="container" >
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
-            <h3>Contact Messages</h3>
+            <h3>{{messageType}} Contact Messages</h3><br><br>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center mb-2">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" (click)="getUnreadMessages()" class="btn btn-danger">Unread</button>
+          <button type="button" (click)="getReadMessages()" class="btn btn-success">Read</button>
+          <button type="button" (click)="getAllMessages()" class="btn btn-secondary">All</button>
+        </div>
+      </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -11,12 +20,20 @@
                     <table class="table table-striped" >
                         <thead>
                           <tr>
+                            <th *ngIf="messageType=='Unread'">Action</th>
                             <th *ngFor="let c of columns">{{c}}</th>
                           </tr>
                         </thead>
                         <tbody>
-                          <tr *ngFor="let m of messages">
-                            <td class="col-md-1">{{m.date}}</td>
+                          <tr *ngFor="let m of messages;let i=index">
+                            <td class="col-md-1" *ngIf="messageType=='Unread'">
+                              <button type="button" (click)="markAsRead(i);" class="btn btn-success">
+                                <svg width="25" height="25" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-envelope-open" viewBox="0 0 16 16">
+                                  <path d="M8.47 1.318a1 1 0 0 0-.94 0l-6 3.2A1 1 0 0 0 1 5.4v.818l5.724 3.465L8 8.917l1.276.766L15 6.218V5.4a1 1 0 0 0-.53-.882l-6-3.2zM15 7.388l-4.754 2.877L15 13.117v-5.73zm-.035 6.874L8 10.083l-6.965 4.18A1 1 0 0 0 2 15h12a1 1 0 0 0 .965-.738zM1 13.117l4.754-2.852L1 7.387v5.73zM7.059.435a2 2 0 0 1 1.882 0l6 3.2A2 2 0 0 1 16 5.4V14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V5.4a2 2 0 0 1 1.059-1.765l6-3.2z"/>
+                                </svg>
+                              </button>
+                            </td>
+                            <td class="col-md-1">{{m.date}} {{i}}</td>
                             <td class="col-md-2">{{m.firstName}} {{m.lastName}}</td>
                             <td class="col-md-1">{{m.email}}</td>
                             <td class="col-md-1">{{m.phone}}</td>
