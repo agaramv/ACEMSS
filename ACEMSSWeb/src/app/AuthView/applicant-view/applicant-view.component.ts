@@ -22,4 +22,13 @@ export class ApplicantViewComponent implements OnInit {
     })
   }
 
+  viewFile(fileUrl){
+    const byteArray = new Uint8Array(
+      atob(fileUrl.replace('data:application/pdf;base64,', '')).split('').map(char => char.charCodeAt(0))
+    );
+    let blob = new Blob([byteArray], { type: 'application/pdf' });
+    var url = URL.createObjectURL(blob);
+    window.open(url, '_blank');
+  }
+
 }
