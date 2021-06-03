@@ -1,6 +1,7 @@
 package com.ace.acems.dao;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,5 +24,11 @@ public class MessageDaoImpl implements MessageDao{
 	public MessageEntity addContactMessage(MessageEntity messageEnitity) {
 		return messageRepo.saveAndFlush(messageEnitity);
 	}
+
+	@Override
+	public List<MessageEntity> getMessageByStatus(String status) {
+		return messageRepo.getMessagesByStatus(status);
+	}
+
 
 }

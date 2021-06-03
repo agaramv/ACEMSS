@@ -1,6 +1,7 @@
 package com.ace.acems.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,6 +24,15 @@ public class MessageController {
 	@GetMapping("/message/all")
 	public List<MessageEntity> getMessagesAll(){
 		return messageService.getMessageAll();
+	}
+	
+	@GetMapping("/message/unread")
+	public List<MessageEntity> getUnreadMessages(){
+		return messageService.getMessageByStatus("U");
+	}
+	@GetMapping("/message/read")
+	public List<MessageEntity> getReadMessages(){
+		return messageService.getMessageByStatus("R");
 	}
 	
 	@PostMapping("message/add")

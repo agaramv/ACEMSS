@@ -26,16 +26,17 @@ public class MessageEntity {
 	private long phone;
 	@Column(name="message")
 	private String message;
+	@Column(name="status")
+	private String status;
 	
 	public MessageEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	
 
 	public MessageEntity(int id, String date, String firstName, String lastName, String email, long phone,
-			String message) {
+			String message, String status) {
 		super();
 		this.id = id;
 		this.date = date;
@@ -44,8 +45,8 @@ public class MessageEntity {
 		this.email = email;
 		this.phone = phone;
 		this.message = message;
+		this.status = status;
 	}
-
 
 
 	public int getId() {
@@ -92,6 +93,16 @@ public class MessageEntity {
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+
+	public String getStatus() {
+		return status;
+	}
+
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 	
 }

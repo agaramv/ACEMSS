@@ -1,6 +1,7 @@
 package com.ace.acems.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,11 @@ public class MessageServiceImpl implements MessageService{
 	@Override
 	public MessageEntity addContactMessage(MessageEntity messageEnitity) {
 		return messageDao.addContactMessage(messageEnitity);
+	}
+
+	@Override
+	public List<MessageEntity> getMessageByStatus(String status) {
+		return messageDao.getMessageByStatus(status);
 	}
 	
 	
