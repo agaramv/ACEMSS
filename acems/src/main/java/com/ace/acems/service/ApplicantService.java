@@ -10,4 +10,5 @@ public interface ApplicantService {
 	
 	ApplicantEntity addApplicant(ApplicantEntity applicantEntity);
 	
+	List<ApplicantEntity> getApplicantsByStatus(String status);
 }

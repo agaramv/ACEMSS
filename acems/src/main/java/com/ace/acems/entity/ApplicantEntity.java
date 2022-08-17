@@ -28,14 +28,18 @@ public class ApplicantEntity {
 	private long phone;
 	@Column(name="file_src")
 	private String fileSrc;
+	@Column(name="status")
+	private String status;
 	
 	public ApplicantEntity() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public ApplicantEntity(int id, String dateApplied, String position, String email, String firstName, String lastName,
-			long phone, String fileSrc) {
+			long phone, String fileSrc, String status) {
 		super();
 		this.id = id;
 		this.dateApplied = dateApplied;
@@ -45,7 +49,10 @@ public class ApplicantEntity {
 		this.lastName = lastName;
 		this.phone = phone;
 		this.fileSrc = fileSrc;
+		this.status = status;
 	}
+
+
 
 	public int getId() {
 		return id;
@@ -110,7 +117,13 @@ public class ApplicantEntity {
 	public void setFileSrc(String fileSrc) {
 		this.fileSrc = fileSrc;
 	}
-	
-	
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
 }

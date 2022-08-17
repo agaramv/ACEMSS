@@ -25,4 +25,9 @@ public class ApplicantServiceImpl implements ApplicantService{
 		return applicantRepo.saveAndFlush(applicantEntity);
 	}
 
+	@Override
+	public List<ApplicantEntity> getApplicantsByStatus(String status) {
+		return applicantRepo.getApplicantsByStatus(status);
+	}
+
 }
