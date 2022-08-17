@@ -39,4 +39,9 @@ export class AppService {
     return this.http.post<any>(this.endpoint+"/applicant/add",applicant)
   }
 
+  //'R' = rejected, 'W' = waitlisted/no action
+  getApplicantsByStatus(status){
+    return this.http.get<any>(this.endpoint+"/applicant/status/"+status);
+  }
+
 }

@@ -1,8 +1,17 @@
 <div class="container" >
     <div class="row">
         <div class="col-md-12 d-flex justify-content-center" style="margin-top: 10%;">
-            <h3>Applicant List</h3>
+            <h3> {{applicantType}} Applicant List</h3>
         </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-center mb-2">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" (click)="getApplicantsByStatus('N')" class="btn btn-success">New</button>
+          <button type="button" (click)="getApplicantsByStatus('R')" class="btn btn-danger">Rejected</button>
+          <button type="button" (click)="getApplicants()" class="btn btn-secondary">All</button>
+        </div>
+      </div>
     </div>
     <div class="row">
         <div class="col-md-12">
@@ -11,11 +20,15 @@
                     <table class="table table-striped" >
                       <thead>
                         <tr>
+                          <th *ngIf="applicantType=='New'">Action</th>
                           <th *ngFor="let c of columns">{{c}}</th>
                         </tr>
                       </thead>
                       <tbody>
-                        <tr *ngFor="let a of applicants">
+                        <tr *ngFor="let a of applicants;let i=index">
+                          <td *ngIf="applicantType=='New'">
+                            <button type="button" (click)="updateApplicant(i)" class="btn btn-danger">Reject</button>
+                          </td>
                           <td>{{a.dateApplied}}</td>
                           <td>{{a.position}}</td>
                           <td>{{a.firstName}} {{a.lastName}}</td>

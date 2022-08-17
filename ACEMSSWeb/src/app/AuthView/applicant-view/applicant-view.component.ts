@@ -8,17 +8,41 @@ import { AppService } from 'src/app/app.service';
 })
 export class ApplicantViewComponent implements OnInit {
   applicants = []
+  applicantType="New"
   columns = ["Date","Position","Name","Email", "Phone", "File"]
   constructor(private appService: AppService) { }
 
   ngOnInit(): void {
-    this.getApplicants()
+    // this.getApplicants()
+    this.getApplicantsByStatus("N")
   }
 
   getApplicants(){
     this.appService.getAllApplicants().subscribe(data=>{
       console.log(data)
       this.applicants=data;
+      this.applicantType="All"
+    })
+  }
+
+  getApplicantsByStatus(statusType){
+    this.appService.getApplicantsByStatus(statusType).subscribe(data=>{
+      console.log(data)
+      this.applicants=data
+      if(statusType=="N"){
+        this.applicantType="New"
+      }
+      if(statusType=="R"){
+        this.applicantType="Rejected"
+      }
+    })
+  }
+
+  updateApplicant(index){
+    this.applicants[index].status='R'
+    this.appService.addApplicant(this.applicants[index]).subscribe(data=>{
+      console.log(data)
+      this.getApplicantsByStatus('N')
     })
   }
 
